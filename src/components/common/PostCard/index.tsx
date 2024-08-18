@@ -36,7 +36,7 @@ const PostCard = ({
   return (
     <div className="w-full rounded-md border-2 border-atlys-border bg-atlys-bg-2 p-4">
       {isCreatePost ? (
-        <div className="bg-red-400 flex flex-col gap-2">
+        <div className="flex flex-col gap-2">
           <text className="text-atlys-text-muted-1">Create post</text>
           <div className="flex items-center rounded-md bg-atlys-gray-2 px-2 py-6">
             <div className="mr-4 flex h-[3dvw] w-[3dvw] items-center justify-center rounded-full bg-atlys-bg-2">

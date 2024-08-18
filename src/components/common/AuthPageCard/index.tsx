@@ -4,6 +4,7 @@ import useWindowDimensions from '@/hooks/useWindowDimentions/useWindowDimentions
 import { cn } from '@/lib/utils';
 import { useRouter } from 'next/navigation';
 import React, { FormEvent, useState } from 'react';
+import { IoEye, IoEyeOff } from 'react-icons/io5';
 
 interface IAuthCard {
   isAccount: boolean;
@@ -19,6 +20,10 @@ const AuthPageCard = ({ isAccount }: IAuthCard) => {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     router.push('/dashboard');
+  };
+
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisible((prevState) => !prevState);
   };
   return (
     <div
@@ -50,15 +55,25 @@ const AuthPageCard = ({ isAccount }: IAuthCard) => {
           <label htmlFor="password" className="text-sm font-medium text-atlys-text-muted-1">
             Password
           </label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="rounded-md border-[1px] border-atlys-border bg-atlys-bg-2 px-2 py-2 text-sm text-atlys-text"
-            placeholder="Enter your password"
-            required
-          />
+          <div className="relative w-full">
+            <input
+              type={isPasswordVisible ? 'text' : 'password'}
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full rounded-md border-[1px] border-atlys-border bg-atlys-bg-2 px-2 py-2 text-sm text-atlys-text"
+              placeholder="Enter your password"
+              required
+            />
+
+            <button
+              type="button"
+              onClick={togglePasswordVisibility}
+              className="absolute right-3 top-1/2 -translate-y-1/2 transform text-atlys-text"
+            >
+              {isPasswordVisible ? <IoEyeOff /> : <IoEye />}
+            </button>
+          </div>
         </div>
         <button
           onClick={() => router.push('/dashboard')}

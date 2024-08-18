@@ -9,7 +9,7 @@ const Dasboard = () => {
   const { width: windowWidth } = useWindowDimensions();
   return (
     <div className="flex flex-col items-center gap-4 bg-atlys-bg p-4">
-      <div className={cn('flex flex-col gap-4', windowWidth! < 760 ? 'w-[90dvw]' : 'w-[35dvw]')}>
+      <div className={cn('flex flex-col gap-4', windowWidth! < 760 ? 'w-[90dvw]' : 'w-[55dvw]')}>
         <text className="text-2xl text-atlys-text-muted-1">Hello Karan</text>
         <text
           className={cn(
