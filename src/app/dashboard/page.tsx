@@ -1,5 +1,6 @@
 import PostCard, { IPostCard } from '@/components/common/PostCard';
 import { posts } from '@/lib/utils';
+import { v4 as uuidv4 } from 'uuid';
 
 const page = () => {
   return (
@@ -23,6 +24,7 @@ const page = () => {
           } = post;
           return (
             <PostCard
+              key={uuidv4()}
               isCreatePost={isCreatePost}
               username={username}
               timestamp={timestamp}
