@@ -5,7 +5,7 @@ import useWindowDimensions from '@/hooks/useWindowDimentions/useWindowDimentions
 import { cn, posts } from '@/lib/utils';
 import { v4 as uuidv4 } from 'uuid';
 
-const page = () => {
+const Dasboard = () => {
   const { width: windowWidth } = useWindowDimensions();
   return (
     <div className="flex flex-col items-center gap-4 bg-atlys-bg p-4">
@@ -51,4 +51,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Dasboard;
