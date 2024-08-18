@@ -38,9 +38,16 @@ const AuthPageCard = ({ isAccount }: IAuthCard) => {
       </p>
       <form className="w-full">
         <div className="mb-4 flex flex-col gap-2">
-          <label htmlFor="email" className="text-sm font-medium text-atlys-text-muted-1">
-            Email or Username
-          </label>
+          {!isAccount && (
+            <label htmlFor="email" className="text-sm font-medium text-atlys-text-muted-1">
+              Email or Username
+            </label>
+          )}
+          {isAccount && (
+            <label htmlFor="email" className="text-sm font-medium text-atlys-text-muted-1">
+              Email or Username
+            </label>
+          )}
           <input
             type="email"
             id="email"
@@ -51,6 +58,22 @@ const AuthPageCard = ({ isAccount }: IAuthCard) => {
             required
           />
         </div>
+        {!isAccount && (
+          <div className="mb-4 flex flex-col gap-2">
+            <label htmlFor="email" className="text-sm font-medium text-atlys-text-muted-1">
+              Username
+            </label>
+            <input
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="rounded-md border-[1px] border-atlys-border bg-atlys-bg-2 px-2 py-2 text-sm text-atlys-text"
+              placeholder="Choose a preferred username"
+              required
+            />
+          </div>
+        )}
         <div className="mb-4 flex flex-col gap-2">
           <label htmlFor="password" className="text-sm font-medium text-atlys-text-muted-1">
             Password
@@ -62,7 +85,7 @@ const AuthPageCard = ({ isAccount }: IAuthCard) => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="w-full rounded-md border-[1px] border-atlys-border bg-atlys-bg-2 px-2 py-2 text-sm text-atlys-text"
-              placeholder="Enter your password"
+              placeholder={isAccount ? 'Enter your password' : 'Choose a strong password'}
               required
             />
 
