@@ -33,7 +33,7 @@ const PostCard = ({
 }: IPostCard) => {
   const { width: windowWidth } = useWindowDimensions();
   return (
-    <div className="animated-post w-full rounded-md border-2 border-atlys-border bg-atlys-bg-2 p-4">
+    <div className="w-full rounded-md border-2 border-atlys-border bg-atlys-bg-2 p-4">
       {isCreatePost ? (
         <div className="bg-red-400 flex flex-col gap-2">
           <text className="text-atlys-text-muted-1">Create post</text>

@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .animated-btn:hover {
-  transform: scale(1.04);
+  transform: scale(1.03);
   transition: transform 0.3s ease;
   transition-delay: 20ms;
   will-change: transform;
@@ -13,4 +13,54 @@
   transition: transform 0.4s ease;
   transition-delay: 20ms;
   will-change: transform;
+}
+
+.diagonal-gradient-border::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background: linear-gradient(135deg, #4a90e2, #9013fe);
+  border-radius: inherit;
+}
+
+.diagonal-auth-gradient-border {
+  position: relative;
+  border-radius: 12px; /* Desired border radius */
+  border: 2px solid transparent;
+  border-image: linear-gradient(135deg, #969696, #343434) 1; /* Gradient border */
+}
+
+.diagonal-auth-gradient-border::before {
+  content: '';
+  position: absolute;
+  top: -2px; /* Negative margin to ensure border width */
+  left: -2px; /* Negative margin to ensure border width */
+  right: -2px; /* Negative margin to ensure border width */
+  bottom: -2px; /* Negative margin to ensure border width */
+  border-radius: 12px; /* Ensure pseudo-element matches border radius */
+  background: linear-gradient(135deg, #969696, #343434); /* Gradient background */
+  z-index: -1;
+  pointer-events: none; /* Make sure the pseudo-element doesn't block interactions */
+}
+
+.diagonal-auth-gradient-border {
+  position: relative;
+  border-radius: inherit; /* Ensure border radius is inherited */
+  overflow: hidden; /* Hide the overflow of the pseudo-element */
+}
+
+.diagonal-auth-gradient-border::before {
+  content: '';
+  position: absolute;
+  top: 2px; /* Adjust according to the border width */
+  left: 2px; /* Adjust according to the border width */
+  right: 2px; /* Adjust according to the border width */
+  bottom: 2px; /* Adjust according to the border width */
+  background: linear-gradient(135deg, #969696, #343434);
+  z-index: -1;
+  border-radius: inherit; /* Ensure gradient matches the border radius */
 }
