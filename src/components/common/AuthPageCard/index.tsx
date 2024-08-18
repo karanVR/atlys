@@ -1,5 +1,7 @@
 'use client';
 
+import useWindowDimensions from '@/hooks/useWindowDimentions/useWindowDimentions.hook';
+import { cn } from '@/lib/utils';
 import { useRouter } from 'next/navigation';
 import React, { FormEvent, useState } from 'react';
 
@@ -12,13 +14,19 @@ const AuthPageCard = ({ isAccount }: IAuthCard) => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
+  const { width: windowWidth } = useWindowDimensions();
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     router.push('/dashboard');
   };
   return (
-    <div className="diagonal-auth-gradient-border flex w-[35dvw] flex-col items-center gap-4 rounded-lg bg-atlys-bg-2 px-8 py-8">
+    <div
+      className={cn(
+        'diagonal-auth-gradient-border flex w-[35dvw] flex-col items-center gap-4 rounded-lg bg-atlys-bg-2 px-8 py-8',
+        windowWidth! < 760 ? 'w-[90dvw]' : 'w-[35dvw]',
+      )}
+    >
       {<p className="text-sm text-atlys-text-muted-2">{isAccount ? 'WELCOME BACK' : 'SIGN UP'}</p>}
       <p className="mb-[4dvh] text-lg font-bold text-atlys-text">
         {isAccount ? 'Log into your account' : 'Create an account to continue'}

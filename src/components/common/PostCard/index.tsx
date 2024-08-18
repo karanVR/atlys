@@ -1,12 +1,13 @@
 'use client';
 
-import useWindowDimensions from '@/hooks/useWindowDimentions/useWindowDimentions.hook';
 import { StaticImport } from 'next/dist/shared/lib/get-img-props';
 import Image from 'next/image';
 import React, { ReactNode } from 'react';
 import { FaRegCommentAlt } from 'react-icons/fa';
 import { HiDotsHorizontal } from 'react-icons/hi';
 import { FaCircle } from 'react-icons/fa';
+import { cn } from '@/lib/utils';
+import useWindowDimensions from '@/hooks/useWindowDimentions/useWindowDimentions.hook';
 
 export interface IPostCard {
   isCreatePost?: boolean;
@@ -43,7 +44,12 @@ const PostCard = ({
             </div>
             <text className="text-atlys-text-muted-2">How are you feeling today?</text>
           </div>
-          <button className="animated-btn ml-auto w-[6dvw] rounded-md bg-atlys-blue px-6 py-2 text-sm text-atlys-text">
+          <button
+            className={cn(
+              'animated-btn ml-auto rounded-md bg-atlys-blue px-6 py-2 text-atlys-text',
+              windowWidth! < 760 ? 'w-[20dvw] text-xs' : 'w-[6dvw] text-sm',
+            )}
+          >
             Post
           </button>
         </div>
@@ -71,7 +77,14 @@ const PostCard = ({
             <div className="mr-4 flex h-[3dvw] w-[3dvw] items-center justify-center rounded-full bg-atlys-bg-2">
               {emoji}
             </div>
-            <text className="w-[45dvw] text-sm text-atlys-text-muted-2">{content}</text>
+            <text
+              className={cn(
+                'text-sm text-atlys-text-muted-2',
+                windowWidth! < 760 ? 'w-[90dvw]' : 'w-[45dvw]',
+              )}
+            >
+              {content}
+            </text>
           </div>
           <div className="ml-1 flex gap-2 text-atlys-text-muted-2">
             <FaRegCommentAlt />

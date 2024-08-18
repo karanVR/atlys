@@ -3,6 +3,16 @@ import userImg from '@/assets/images/user-1.png';
 import userImg2 from '@/assets/images/user-2.png';
 import userImg3 from '@/assets/images/IMG_20230701_073922.jpg';
 
+import { type ClassValue, clsx } from 'clsx';
+import { twMerge } from 'tailwind-merge';
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+export const getRandomDescription = (arr: string[]) => {
+  return arr[Math.floor(Math.random() * arr.length)];
+};
+
 export const posts: IPostCard[] = [
   {
     isCreatePost: true,
