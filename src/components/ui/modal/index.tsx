@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import ReactDOM from 'react-dom';
-import { IoMdCloseCircle } from "react-icons/io";
+import { IoMdCloseCircle } from 'react-icons/io';
 
 interface ModalProps {
   isOpen: boolean;
@@ -20,7 +20,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
           onClick={onClose}
           className="text-gray-600 hover:text-gray-800 absolute right-8 top-8"
         >
-          <IoMdCloseCircle  className='' size={25}/>
+          <IoMdCloseCircle className="" size={25} />
         </button>
       </div>
     </div>,

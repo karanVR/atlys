@@ -9,6 +9,7 @@ import { IoEye, IoEyeOff } from 'react-icons/io5';
 interface IAuthCard {
   isAccount: boolean;
   setIsAccount?: Dispatch<SetStateAction<boolean>> | any;
+  forgotPassword?: boolean;
 }
 
 const AuthPageCard = ({ isAccount = false, setIsAccount }: IAuthCard) => {
@@ -76,6 +77,7 @@ const AuthPageCard = ({ isAccount = false, setIsAccount }: IAuthCard) => {
             />
           </div>
         )}
+
         <div className="mb-4 flex flex-col gap-2">
           <label htmlFor="password" className="text-sm font-medium text-atlys-text-muted-1">
             Password
@@ -123,12 +125,14 @@ const AuthPageCard = ({ isAccount = false, setIsAccount }: IAuthCard) => {
         </div>
       )}
       {isAccount && (
-        <div  onClick={() => {
-          if (!setIsAccount) {
-            router.push('/signup');
-          }
-          setIsAccount && setIsAccount(!isAccount);
-        }} >
+        <div
+          onClick={() => {
+            if (!setIsAccount) {
+              router.push('/signup');
+            }
+            setIsAccount && setIsAccount(!isAccount);
+          }}
+        >
           <text className="cursor-pointer text-xs text-atlys-text-muted-1">
             <text className="text-atlys-text-muted-2">Not registered yet? </text>Register →{' '}
           </text>
