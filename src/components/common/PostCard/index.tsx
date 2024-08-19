@@ -2,12 +2,14 @@
 
 import { StaticImport } from 'next/dist/shared/lib/get-img-props';
 import Image from 'next/image';
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useState } from 'react';
 import { FaRegCommentAlt } from 'react-icons/fa';
 import { HiDotsHorizontal } from 'react-icons/hi';
 import { FaCircle } from 'react-icons/fa';
 import { cn } from '@/lib/utils';
 import useWindowDimensions from '@/hooks/useWindowDimentions/useWindowDimentions.hook';
+import Modal from '@/components/ui/modal';
+import AuthPageCard from '../AuthPageCard';
 
 export interface IPostCard {
   isCreatePost?: boolean;
@@ -33,6 +35,17 @@ const PostCard = ({
   showComments,
 }: IPostCard) => {
   const { width: windowWidth } = useWindowDimensions();
+
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isAccount, setIsAccount] = useState<boolean>(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
   return (
     <div className="w-full rounded-md border-2 border-atlys-border bg-atlys-bg-2 p-4">
       {isCreatePost ? (
@@ -42,9 +55,13 @@ const PostCard = ({
             <div className="mr-4 flex h-[3dvw] w-[3dvw] items-center justify-center rounded-full bg-atlys-bg-2">
               {emoji}
             </div>
-            <text className="text-atlys-text-muted-2">How are you feeling today?</text>
+            <textarea
+              className="w-full bg-atlys-gray-2 p-2 text-atlys-text-muted-2"
+              placeholder="How are you feeling today?"
+            />
           </div>
           <button
+            onClick={openModal}
             className={cn(
               'animated-btn ml-auto rounded-md bg-atlys-blue px-6 py-2 text-atlys-text',
               windowWidth! < 760 ? 'w-[20dvw] text-xs' : 'w-[6dvw] text-sm',
@@ -92,6 +109,9 @@ const PostCard = ({
           </div>
         </div>
       )}
+      <Modal isOpen={isModalOpen} onClose={closeModal}>
+        <AuthPageCard isAccount={isAccount} setIsAccount={setIsAccount} />
+      </Modal>
     </div>
   );
 };

@@ -3,17 +3,19 @@
 import useWindowDimensions from '@/hooks/useWindowDimentions/useWindowDimentions.hook';
 import { cn } from '@/lib/utils';
 import { useRouter } from 'next/navigation';
-import React, { FormEvent, useState } from 'react';
+import React, { Dispatch, FormEvent, SetStateAction, useState } from 'react';
 import { IoEye, IoEyeOff } from 'react-icons/io5';
 
 interface IAuthCard {
   isAccount: boolean;
+  setIsAccount?: Dispatch<SetStateAction<boolean>> | any;
 }
 
-const AuthPageCard = ({ isAccount }: IAuthCard) => {
+const AuthPageCard = ({ isAccount = false, setIsAccount }: IAuthCard) => {
   const router = useRouter();
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [username, setUsername] = useState<string>('');
   const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
   const { width: windowWidth } = useWindowDimensions();
 
@@ -40,7 +42,7 @@ const AuthPageCard = ({ isAccount }: IAuthCard) => {
         <div className="mb-4 flex flex-col gap-2">
           {!isAccount && (
             <label htmlFor="email" className="text-sm font-medium text-atlys-text-muted-1">
-              Email or Username
+              Email
             </label>
           )}
           {isAccount && (
@@ -54,20 +56,20 @@ const AuthPageCard = ({ isAccount }: IAuthCard) => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className="rounded-md border-[1px] border-atlys-border bg-atlys-bg-2 px-2 py-2 text-sm text-atlys-text"
-            placeholder="Enter your email or username"
+            placeholder={isAccount ? 'Enter your email or username' : 'Enter your email'}
             required
           />
         </div>
         {!isAccount && (
           <div className="mb-4 flex flex-col gap-2">
-            <label htmlFor="email" className="text-sm font-medium text-atlys-text-muted-1">
+            <label htmlFor="username" className="text-sm font-medium text-atlys-text-muted-1">
               Username
             </label>
             <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              type="text"
+              id="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               className="rounded-md border-[1px] border-atlys-border bg-atlys-bg-2 px-2 py-2 text-sm text-atlys-text"
               placeholder="Choose a preferred username"
               required
@@ -107,14 +109,26 @@ const AuthPageCard = ({ isAccount }: IAuthCard) => {
         </button>
       </form>
       {!isAccount && (
-        <div onClick={() => router.push('/')}>
+        <div
+          onClick={() => {
+            if (!setIsAccount) {
+              router.push('/');
+            }
+            setIsAccount && setIsAccount(!isAccount);
+          }}
+        >
           <text className="cursor-pointer text-xs text-atlys-text-muted-1">
             <text className="text-atlys-text-muted-2">Already have an account? </text>Login →
           </text>
         </div>
       )}
       {isAccount && (
-        <div onClick={() => router.push('/signup')}>
+        <div  onClick={() => {
+          if (!setIsAccount) {
+            router.push('/signup');
+          }
+          setIsAccount && setIsAccount(!isAccount);
+        }} >
           <text className="cursor-pointer text-xs text-atlys-text-muted-1">
             <text className="text-atlys-text-muted-2">Not registered yet? </text>Register →{' '}
           </text>

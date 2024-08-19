@@ -2,7 +2,6 @@ import AuthPageCard from '@/components/common/AuthPageCard';
 import React from 'react';
 import logo from '@/assets/icons/logo.png';
 import Image from 'next/image';
-import { IoEye } from 'react-icons/io5';
 
 const page = () => {
   return (
