@@ -88,7 +88,11 @@ const PostCard = ({
                 )}
               </text>
             </div>
-            <HiDotsHorizontal className="ml-auto mr-4 text-atlys-text" size={22} />
+            <HiDotsHorizontal
+              onClick={openModal}
+              className="ml-auto mr-4 cursor-pointer text-atlys-text"
+              size={22}
+            />
           </div>
           <div className="flex items-center rounded-md bg-atlys-gray-2 px-2 py-6">
             <div className="mr-4 flex h-[3dvw] w-[3dvw] items-center justify-center rounded-full bg-atlys-bg-2">

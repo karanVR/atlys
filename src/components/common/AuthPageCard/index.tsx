@@ -31,12 +31,12 @@ const AuthPageCard = ({ isAccount = false, setIsAccount }: IAuthCard) => {
   return (
     <div
       className={cn(
-        'diagonal-auth-gradient-border flex w-[35dvw] flex-col items-center gap-4 rounded-lg bg-atlys-bg-2 px-8 py-8',
+        'border-atlys-bg-1 flex w-[35dvw] flex-col items-center gap-4 rounded-xl border-2 border-atlys-gray-1 bg-atlys-bg-2 px-8 py-8',
         windowWidth! < 760 ? 'w-[90dvw]' : 'w-[35dvw]',
       )}
     >
-      {<p className="text-sm text-atlys-text-muted-2">{isAccount ? 'WELCOME BACK' : 'SIGN UP'}</p>}
-      <p className="mb-[4dvh] text-lg font-bold text-atlys-text">
+      {<p className="text-md text-atlys-text-muted-2">{isAccount ? 'WELCOME BACK' : 'SIGN UP'}</p>}
+      <p className="mb-[4dvh] text-xl font-bold text-atlys-text">
         {isAccount ? 'Log into your account' : 'Create an account to continue'}
       </p>
       <form className="w-full">
@@ -78,10 +78,17 @@ const AuthPageCard = ({ isAccount = false, setIsAccount }: IAuthCard) => {
           </div>
         )}
 
-        <div className="mb-4 flex flex-col gap-2">
-          <label htmlFor="password" className="text-sm font-medium text-atlys-text-muted-1">
-            Password
-          </label>
+        <div className="relative mb-4 flex w-full flex-col gap-2">
+          <div className="space-between w-full flex-row">
+            <label htmlFor="password" className="text-sm font-medium text-atlys-text-muted-1">
+              Password
+            </label>
+            {isAccount && (
+              <button className="ml-60 text-sm font-medium text-atlys-text-muted-1">
+                Forgot password?
+              </button>
+            )}
+          </div>
           <div className="relative w-full">
             <input
               type={isPasswordVisible ? 'text' : 'password'}
@@ -98,7 +105,38 @@ const AuthPageCard = ({ isAccount = false, setIsAccount }: IAuthCard) => {
               onClick={togglePasswordVisibility}
               className="absolute right-3 top-1/2 -translate-y-1/2 transform text-atlys-text"
             >
-              {isPasswordVisible ? <IoEyeOff /> : <IoEye />}
+              {isPasswordVisible ? (
+                <svg
+                  width="20"
+                  height="16"
+                  viewBox="0 0 20 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M2.41667 8C2.41667 7.19329 2.93513 5.70472 4.18608 4.40565C5.40721 3.13755 7.29888 2.08334 10 2.08334C12.7011 2.08334 14.5928 3.13755 15.8139 4.40565C17.0649 5.70472 17.5833 7.19329 17.5833 8C17.5833 8.80671 17.0649 10.2953 15.8139 11.5944C14.5928 12.8624 12.7011 13.9167 10 13.9167C7.29888 13.9167 5.40721 12.8624 4.18608 11.5944C2.93513 10.2953 2.41667 8.80671 2.41667 8ZM10 0.583336C6.8678 0.583336 4.5928 1.82078 3.1056 3.36519C1.64822 4.87862 0.916672 6.72338 0.916672 8C0.916672 9.27662 1.64822 11.1214 3.1056 12.6348C4.5928 14.1792 6.8678 15.4167 10 15.4167C13.1322 15.4167 15.4072 14.1792 16.8944 12.6348C18.3518 11.1214 19.0833 9.27662 19.0833 8C19.0833 6.72338 18.3518 4.87862 16.8944 3.36519C15.4072 1.82078 13.1322 0.583336 10 0.583336ZM8.24993 8C8.24993 7.0335 9.03343 6.25 9.99993 6.25C10.9664 6.25 11.7499 7.0335 11.7499 8C11.7499 8.9665 10.9664 9.75 9.99993 9.75C9.03343 9.75 8.24993 8.9665 8.24993 8ZM9.99993 4.75C8.205 4.75 6.74993 6.20508 6.74993 8C6.74993 9.79493 8.205 11.25 9.99993 11.25C11.7949 11.25 13.2499 9.79493 13.2499 8C13.2499 6.20508 11.7949 4.75 9.99993 4.75Z"
+                    fill="#7F8084"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  width="20"
+                  height="16"
+                  viewBox="0 0 20 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M2.41667 8C2.41667 7.19329 2.93513 5.70472 4.18608 4.40565C5.40721 3.13755 7.29888 2.08334 10 2.08334C12.7011 2.08334 14.5928 3.13755 15.8139 4.40565C17.0649 5.70472 17.5833 7.19329 17.5833 8C17.5833 8.80671 17.0649 10.2953 15.8139 11.5944C14.5928 12.8624 12.7011 13.9167 10 13.9167C7.29888 13.9167 5.40721 12.8624 4.18608 11.5944C2.93513 10.2953 2.41667 8.80671 2.41667 8ZM10 0.583336C6.8678 0.583336 4.5928 1.82078 3.1056 3.36519C1.64822 4.87862 0.916672 6.72338 0.916672 8C0.916672 9.27662 1.64822 11.1214 3.1056 12.6348C4.5928 14.1792 6.8678 15.4167 10 15.4167C13.1322 15.4167 15.4072 14.1792 16.8944 12.6348C18.3518 11.1214 19.0833 9.27662 19.0833 8C19.0833 6.72338 18.3518 4.87862 16.8944 3.36519C15.4072 1.82078 13.1322 0.583336 10 0.583336ZM8.24993 8C8.24993 7.0335 9.03343 6.25 9.99993 6.25C10.9664 6.25 11.7499 7.0335 11.7499 8C11.7499 8.9665 10.9664 9.75 9.99993 9.75C9.03343 9.75 8.24993 8.9665 8.24993 8ZM9.99993 4.75C8.205 4.75 6.74993 6.20508 6.74993 8C6.74993 9.79493 8.205 11.25 9.99993 11.25C11.7949 11.25 13.2499 9.79493 13.2499 8C13.2499 6.20508 11.7949 4.75 9.99993 4.75Z"
+                    fill="#7F8084"
+                  />
+                </svg>
+              )}
+              {/* {isPasswordVisible ? <IoEyeOff /> : <IoEye />} */}
             </button>
           </div>
         </div>
@@ -112,6 +150,7 @@ const AuthPageCard = ({ isAccount = false, setIsAccount }: IAuthCard) => {
       </form>
       {!isAccount && (
         <div
+          className="w-full"
           onClick={() => {
             if (!setIsAccount) {
               router.push('/');
@@ -119,9 +158,10 @@ const AuthPageCard = ({ isAccount = false, setIsAccount }: IAuthCard) => {
             setIsAccount && setIsAccount(!isAccount);
           }}
         >
-          <text className="cursor-pointer text-xs text-atlys-text-muted-1">
-            <text className="text-atlys-text-muted-2">Already have an account? </text>Login →
-          </text>
+          <div className="flex w-full cursor-pointer gap-2 self-start text-xs text-atlys-text-muted-1">
+            <text className="text-atlys-text-muted-2">Already have an account? </text>
+            Login →
+          </div>
         </div>
       )}
       {isAccount && (
@@ -132,10 +172,12 @@ const AuthPageCard = ({ isAccount = false, setIsAccount }: IAuthCard) => {
             }
             setIsAccount && setIsAccount(!isAccount);
           }}
+          className="w-full"
         >
-          <text className="cursor-pointer text-xs text-atlys-text-muted-1">
-            <text className="text-atlys-text-muted-2">Not registered yet? </text>Register →{' '}
-          </text>
+          <div className="flex w-full cursor-pointer gap-2 text-xs text-atlys-text-muted-1">
+            <text className="text-atlys-text-muted-2">Not registered yet? </text>
+            Register →{' '}
+          </div>
         </div>
       )}
     </div>
