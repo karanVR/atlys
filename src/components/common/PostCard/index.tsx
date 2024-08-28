@@ -50,7 +50,7 @@ const PostCard = ({
   return (
     <div className="w-full rounded-md border-2 border-atlys-border bg-atlys-bg-2 p-4">
       {isCreatePost ? (
-        <div className="flex flex-col gap-2">
+        <div onClick={() => openModal()} className="flex flex-col gap-2">
           <text className="text-atlys-text-muted-1">Create post</text>
           <div className="flex items-center rounded-md bg-atlys-gray-2 px-2 py-6">
             <div className="mr-4 flex h-[3dvw] w-[3dvw] items-center justify-center rounded-full bg-atlys-bg-2">
@@ -59,7 +59,7 @@ const PostCard = ({
             <textarea
               onClick={openModal}
               disabled={isModalOpen}
-              className="w-full select-none bg-atlys-gray-2 p-2 text-atlys-text-muted-2"
+              className="mt-4 w-full select-none bg-atlys-gray-2 p-2 text-atlys-text-muted-2"
               placeholder="How are you feeling today?"
             />
           </div>
@@ -74,7 +74,7 @@ const PostCard = ({
           </button>
         </div>
       ) : (
-        <div className="flex flex-col justify-center gap-2">
+        <div onClick={() => openModal()} className="flex flex-col justify-center gap-2">
           <div className="flex gap-2">
             <div className="h-10 w-10 overflow-hidden rounded-full">
               <Image src={profilePicture!} alt="userImg" objectFit="cover" />
@@ -111,7 +111,7 @@ const PostCard = ({
               {content}
             </text>
           </div>
-          <div className="ml-1 flex gap-2 text-atlys-text-muted-2">
+          <div className="ml-1 flex cursor-pointer gap-2 text-atlys-text-muted-2">
             <FaRegCommentAlt />
             <text className="text-xs text-atlys-text-muted-2">{commentsCount} comments</text>
           </div>
