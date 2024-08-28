@@ -21,6 +21,7 @@ export interface IPostCard {
   isEdited?: boolean;
   commentsCount?: number;
   showComments?: boolean;
+  onOpenModal?: () => void;
 }
 
 const PostCard = ({
@@ -56,7 +57,9 @@ const PostCard = ({
               {emoji}
             </div>
             <textarea
-              className="w-full bg-atlys-gray-2 p-2 text-atlys-text-muted-2"
+              onClick={openModal}
+              disabled={isModalOpen}
+              className="w-full select-none bg-atlys-gray-2 p-2 text-atlys-text-muted-2"
               placeholder="How are you feeling today?"
             />
           </div>
@@ -99,8 +102,9 @@ const PostCard = ({
               {emoji}
             </div>
             <text
+              onClick={openModal}
               className={cn(
-                'text-sm text-atlys-text-muted-2',
+                'select-none text-sm text-atlys-text-muted-2',
                 windowWidth! < 760 ? 'w-[90dvw]' : 'w-[45dvw]',
               )}
             >
